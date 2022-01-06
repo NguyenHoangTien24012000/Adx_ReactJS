@@ -1,15 +1,29 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {useDispatch} from 'react-redux';
+import { dangNhapAction } from '../redux/actions/UserAction';
 export default function Login(props) {
-    // console.log('alo12')
-    const [user, setUser] = useState({user : '', password: ''});
+    console.log(props);
+    const [user, setUser] = useState({user : '', password : ''});
+    const [error, setError] = useState({user : '', password : ''});
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-    }
+    const dispatch = useDispatch();
+
     const handleChange = (e) =>{
         const {name, value} = e.target;
+
+        if(!value){
+            setError({...error, [name] : `${name} invalid!!!`})
+        }else{
+            setError({...error, [name] : ''});
+        }
         setUser({...user,  [name] : value});
-        // console.log(user);
+    }
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        if(!error.user && !error.password ){
+            console.log('a')
+            dispatch(dangNhapAction(user))
+        }
     }
     return (
         <div className="container">
@@ -23,9 +37,11 @@ export default function Login(props) {
                             <div className="mb-3" >
                                 <input type="text" className="form-control" 
                                     placeholder="User Name" name="user" value={user.user} onChange={handleChange}/>
+                                    <div><p className='text-danger'>{error.user}</p></div>
                             </div>
                             <div className="mb-3">
                                 <input type="password" className="form-control" name="password" placeholder="password" value={user.password} onChange={handleChange} />
+                                <div><p className='text-danger'>{error.password}</p></div>
                             </div>
                             <div className="text-center"><button type="submit" className="btn btn-color px-5 mb-5 w-100">Login</button></div>
                         </form>

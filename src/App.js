@@ -1,18 +1,23 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import Login from './pages/Login';
 import Admin from './pages/Admin';
+import { createBrowserHistory } from 'history'
+import PageNotFound from './pages/PageNotFound';
+import { Route, Switch } from "react-router";
 
-
+export const history = createBrowserHistory();
 
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route exact path="/login" element={<Login/>}></Route>
-                <Route exact path="/admin" element={<Admin/>}></Route>
-            </Routes>
+        <BrowserRouter history={history}>
+            <Switch>
+                <Route exact path="/" component={Login}></Route>
+                <Route exact path="/login" component={Login}></Route>
+                <Route exact path="/admin" component={Admin}></Route>
+                <Route path="*" element={<PageNotFound />} />
+            </Switch>
         </BrowserRouter>
     );
 }

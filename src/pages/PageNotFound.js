@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Admin() {
+export default function PageNotFound() {
     return (
         <div>
-            <h1>Alo 123</h1>
+            <h2>Page Not Found</h2>
         </div>
     )
 }
