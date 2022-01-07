@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux';
 import { dangNhapAction } from '../redux/actions/UserAction';
 export default function Login(props) {
-    console.log(props);
+    // console.log(props);
     const [user, setUser] = useState({user : '', password : ''});
     const [error, setError] = useState({user : '', password : ''});
 
