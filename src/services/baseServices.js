@@ -14,7 +14,7 @@ export class BaseServices {
             url : `${DOMAIN}${url}`,
             method : 'POST',
             data : model,
-            // headers : {'Authorization' : localStorage.getItem(ACCESS_TOKEN)}
+            headers : {'Authorization' : '1'}
         })
     }
     put = (url, model) =>{

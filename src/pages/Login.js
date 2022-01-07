@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { dangNhapAction } from '../redux/actions/UserAction';
 export default function Login(props) {
-    // console.log(props);
     const [user, setUser] = useState({user : '', password : ''});
     const [error, setError] = useState({user : '', password : ''});
-
+    
     const dispatch = useDispatch();
+    
+    
+    // console.log(props);
+    const history = props.history;
 
     const handleChange = (e) =>{
         const {name, value} = e.target;
@@ -21,12 +25,13 @@ export default function Login(props) {
     const handleSubmit = (e) =>{
         e.preventDefault();
         if(!error.user && !error.password ){
-            console.log('a')
-            dispatch(dangNhapAction(user))
+            dispatch(dangNhapAction(user, history));
+
         }
     }
     return (
         <div className="container">
+            
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <div className="card my-5">

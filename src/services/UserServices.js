@@ -5,7 +5,6 @@ class UserServices extends BaseServices{
         super()
     }
     dangNhap = (thongTinDangNhap) =>{
-    
         return this.post(`/admin/checkLogin`, thongTinDangNhap)
     }
 }
