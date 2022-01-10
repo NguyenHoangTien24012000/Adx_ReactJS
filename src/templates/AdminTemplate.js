@@ -22,10 +22,10 @@ export const AdminTemplate = (props) => {
                     <div className="col-md-3 col-lg-2 px-0 position-fixed h-100 bg-dark shadow-sm sidebar" id="sidebar">
                         <h2 className='text-primary text-center'>Admin</h2>
                         <div className="list-group rounded-0">
-                            <a href="#" className="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+                            <NavLink to="/admin" className="list-group-item list-group-item-action active border-0 d-flex align-items-center">
                                 <span className="bi bi-border-all"></span>
                                 <span className="ml-2">Dashboard</span>
-                            </a>
+                            </NavLink>
                             <TabAdminAdxPC />
                         </div>
                     </div>

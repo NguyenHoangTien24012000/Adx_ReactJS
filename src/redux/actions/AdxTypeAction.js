@@ -34,3 +34,15 @@ export const getADXTypeAction = (ADXType) => {
         }
     }
 }
+
+
+export const upLoadFileImage = (file) =>{
+    return async(dispatch) =>{
+        try {
+            const result = await adxTypeServices.upLoadFileAction(file);
+            console.log(result);
+        } catch (error) {
+            
+        }
+    }
+}

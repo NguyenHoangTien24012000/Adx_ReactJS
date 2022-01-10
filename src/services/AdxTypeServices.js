@@ -10,6 +10,9 @@ class AdxTypeServices extends BaseServices{
     getADXTypeAction = (ADXType) =>{
         return this.get(`/adxType/getAdxGroupType/${ADXType}`)
     }
+    upLoadFileAction = (file) =>{
+        return this.post(`/upLoadFile/upImage`, file)
+    }
 }
 
 export const adxTypeServices = new AdxTypeServices()

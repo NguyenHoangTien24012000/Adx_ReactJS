@@ -8,7 +8,7 @@ export default function TabAdminAdxPC() {
   
 
     const renderAdxType = () => {
-        return allTypeAdx.map((item, index) => {
+        return allTypeAdx?.map((item, index) => {
             const nameAdx = item.type_adx.replace(/\s/g, '');
             return <div key={index}>
                 <button className="list-group-item list-group-item-action bg-dark text-white border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target={`#${nameAdx}`}>

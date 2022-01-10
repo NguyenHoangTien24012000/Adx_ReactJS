@@ -24,7 +24,7 @@ export default function AdminAdxType(props) {
                 <td>{item.size}</td>
                 <td>{item.type_screen}</td>
                 <td>
-                    <button type="button" className="btn btn-primary mr-1"><NavLink to={``} className="text-white">Edit</NavLink></button>
+                    <button type="button" className="btn btn-primary mr-1"><NavLink to={`/admin/edit/${item.id_adx}`} className="text-white">Edit</NavLink></button>
                     <button type="button" className="btn btn-danger">Delete</button>
                 </td>
             </tr>

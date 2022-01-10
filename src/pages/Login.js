@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { dangNhapAction } from '../redux/actions/UserAction';
 export default function Login(props) {
     const [user, setUser] = useState({user : '', password : ''});

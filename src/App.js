@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router";
 import { AdminTemplate } from './templates/AdminTemplate';
 import AdminPage from './pages/AdminPage';
 import AdminAdxType from './pages/AdminAdxType';
+import AdminEditAdx from './pages/AdminEditAdx';
 
 
 export const history = createBrowserHistory();
@@ -19,6 +20,7 @@ function App() {
                 <Route exact path="/login" component={Login}></Route>
                 <AdminTemplate exact path="/admin" Component = {AdminPage} />
                 <AdminTemplate exact path="/admin/:ADXType" Component = {AdminAdxType} />
+                <AdminTemplate exact path="/admin/edit/:idADX" Component = {AdminEditAdx} />
                 <Route path="*" component={PageNotFound} />
             </Switch>
         </BrowserRouter>
