@@ -7,6 +7,9 @@ class AdxTypeServices extends BaseServices{
     getAllTypeAdxAction = () =>{
         return this.get('/adxType/getAllAdxGroupType');
     }
+    getADXTypeAction = (ADXType) =>{
+        return this.get(`/adxType/getAdxGroupType/${ADXType}`)
+    }
 }
 
 export const adxTypeServices = new AdxTypeServices()

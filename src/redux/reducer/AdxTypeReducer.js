@@ -1,15 +1,17 @@
-import { GET_ALL_ADX_TYPE } from "../types/AdxType";
+import { GET_ALL_ADX_TYPE, SET_ADX_TYPE } from "../types/AdxType";
 
-const initialState ={
+const initialState = {
     // user :
-    allTypeAdx : [],
+    allTypeAdx: [],
+    adxType : []
 }
 
-export default (state = initialState, action) =>{
+export default (state = initialState, action) => {
     switch (action.type) {
-        case GET_ALL_ADX_TYPE :
-            console.log("action.allTypeAdx",action.allTypeAdx)
-        return {...state, allTypeAdx : action.allTypeAdx}
+        case GET_ALL_ADX_TYPE:
+            return { ...state, allTypeAdx: action.allTypeAdx }
+        case SET_ADX_TYPE :
+            return {...state, adxType : action.adxType}
         default:
             return state;
     }

@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { getAllTypeAdxAction } from '../redux/actions/AdxTypeAction'
 import ItemAdxType from './ItemAdxType'
 
 export default function TabAdminAdxPC() {
-    const dispatch = useDispatch()
+
     const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
-    // console.log('a',allTypeAdx);
+  
 
     const renderAdxType = () => {
         return allTypeAdx.map((item, index) => {
             const nameAdx = item.type_adx.replace(/\s/g, '');
             return <div key={index}>
-                <button className="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target={`#${nameAdx}`}>
+                <button className="list-group-item list-group-item-action bg-dark text-white border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target={`#${nameAdx}`}>
                     <div>
                         <span className="bi bi-cart-dash"></span>
                         <span className="ml-2">{item.type_adx}</span>
@@ -36,9 +34,7 @@ export default function TabAdminAdxPC() {
         })
     }
 
-    useEffect(() => {
-        dispatch(getAllTypeAdxAction());
-    }, [])
+
     return (
         <div>
             {renderAdxType()}
