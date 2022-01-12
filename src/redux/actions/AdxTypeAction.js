@@ -40,8 +40,8 @@ export const upLoadFileImage = (file) =>{
     return async(dispatch) =>{
         try {
             console.log(file);
-            // const result = await adxTypeServices.upLoadFileAction(file);
-            // console.log(result);
+            const result = await adxTypeServices.upLoadFileAction(file);
+            console.log(result);
         } catch (error) {
             
         }
