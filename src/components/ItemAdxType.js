@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 export default function ItemAdxType(props) {
-    // console.log('type', props);
+    console.log('type', props);
 
     const dispatch = useDispatch()
 
