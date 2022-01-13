@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdxTypeAction, upLoadFileImage } from '../redux/actions/AdxTypeAction';
-
+import * as Yup from "yup";
 
 export default function AdminEditAdx(props) {
 
@@ -22,21 +22,28 @@ export default function AdminEditAdx(props) {
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            detail: adxType? adxType.detail :'',
-            id_adx: adxType? adxType.id_adx : '',
-            image: adxType? adxType.image : '',
-            name_adx: adxType? adxType.name_adx :'',
-            name_demo: adxType? adxType.name_demo:'',
-            posti: adxType? adxType.posti : '',
-            size: adxType? adxType.size : '',
-            type_adx: adxType? adxType.type_adx:'',
-            type_screen: adxType? adxType.type_screen :''
+            detail: adxType ? adxType.detail : '',
+            id_adx: adxType ? adxType.id_adx : '',
+            image: adxType ? adxType.image : '',
+            name_adx: adxType ? adxType.name_adx : '',
+            name_demo: adxType ? adxType.name_demo : '',
+            posti: adxType ? adxType.posti : '',
+            size: adxType ? adxType.size : '',
+            type_adx: adxType ? adxType.type_adx : '',
+            type_screen: adxType ? adxType.type_screen : ''
         },
+        validationSchema: Yup.object({
+            detail: Yup.string().required("Required!!"),
+            name_adx: Yup.string().required("Required!!"),
+            name_demo: Yup.string().required("Required!!"),
+            posti: Yup.string().required("Required!!"),
+            size : Yup.string().required("Required!!"),
+        }),
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
             let formData = new FormData();
-            for(let key in values ){
-                formData.append(key,values[key])
+            for (let key in values) {
+                formData.append(key, values[key])
             }
             dispatch(upLoadFileImage(formData))
         },
@@ -44,8 +51,9 @@ export default function AdminEditAdx(props) {
 
     const hangdleChangeFile = async (e) => {
         let image = e.target.files[0]
-        await formik.setFieldValue("image", image)
+       
         if (e.target.files && e.target.files[0]) {
+            await formik.setFieldValue("image", image)
             setFile({ fileRender: URL.createObjectURL(image) });
         }
     }
@@ -64,7 +72,9 @@ export default function AdminEditAdx(props) {
                             <div className="mb-3 col-10">
                                 <label className="form-label">Name Adx</label>
                                 <input type="text" className="form-control" name='name_adx' value={formik.values.name_adx} onChange={formik.handleChange} />
-
+                                {formik.errors.name_adx && (
+                                    <p className='text-danger'>{formik.errors.name_adx}</p>
+                                )}
                             </div>
 
                         </div>
@@ -83,22 +93,34 @@ export default function AdminEditAdx(props) {
                             <div className='mb-3 col-6'>
                                 <label className="form-label">Name AdxDemo</label>
                                 <input type="text" className="form-control" name='name_demo' value={formik.values.name_demo} onChange={formik.handleChange} />
+                                {formik.errors.name_demo && (
+                                    <p className='text-danger'>{formik.errors.name_demo}</p>
+                                )}
                             </div>
                             <div className='mb-3 col-6'>
                                 <label className="form-label">Position</label>
                                 <input type="text" className="form-control" name='posti' value={formik.values.posti} onChange={formik.handleChange} />
+                                {formik.errors.posti && (
+                                    <p className='text-danger'>{formik.errors.posti}</p>
+                                )}
                             </div>
                         </div>
                         <div className='row'>
                             <div className='mb-3 col-12'>
                                 <label className="form-label">Detail</label>
                                 <textarea type="text" className="form-control" name='detail' value={formik.values.detail} onChange={formik.handleChange} />
+                                {formik.errors.detail && (
+                                    <p className='text-danger'>{formik.errors.detail}</p>
+                                )}
                             </div>
                         </div>
                         <div className='row'>
                             <div className='mb-3 col-6'>
                                 <label className="form-label">Size</label>
                                 <input type="text" className="form-control" name='size' value={formik.values.size} onChange={formik.handleChange} />
+                                {formik.errors.size && (
+                                    <p className='text-danger'>{formik.errors.size}</p>
+                                )}
                             </div>
                             <div className='mb-3 col-6'>
                                 <label className="form-label">Type ADX</label>
