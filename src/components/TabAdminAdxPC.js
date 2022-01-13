@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { getADXGroupTypeAction } from '../redux/actions/AdxTypeAction';
 import ItemAdxType from './ItemAdxType'
 
 export default function TabAdminAdxPC() {
 
     const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
-  
+
+    const dispatch = useDispatch();
+
+    const { adxGroupType } = useSelector(state => state.AdxTypeReducer)
 
     const renderAdxType = () => {
         return allTypeAdx?.map((item, index) => {
             const nameAdx = item.type_adx.replace(/\s/g, '');
             return <div key={index}>
-                <button className="list-group-item list-group-item-action bg-dark text-white border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target={`#${nameAdx}`}>
+                <button onClick={() => {
+                    dispatch(getADXGroupTypeAction(item.type_adx))
+                }} className="list-group-item list-group-item-action bg-dark text-white border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target={`#${nameAdx}`}>
                     <div>
                         <span className="bi bi-cart-dash"></span>
                         <span className="ml-2">{item.type_adx}</span>
@@ -20,14 +26,7 @@ export default function TabAdminAdxPC() {
                 </button>
                 <div className="collapse" id={nameAdx} data-parent="#sidebar">
                     <div className="list-group">
-                        <ItemAdxType typeAdx = {item.type_adx} />
-                        {/* <NavLink to="/admin/adxPC/1" className="list-group-item list-group-item-action border-0 pl-5" >Kingsize - 1160x250px</NavLink>
-                        <NavLink to="/admin/adxPC/2" className="list-group-item list-group-item-action border-0 pl-5" >Super Leaderboard - 980x90px</NavLink>
-                        <NavLink to="/admin/adxPC/3" className="list-group-item list-group-item-action border-0 pl-5" >Leaderboard - 728x90px</NavLink>
-                        <NavLink to="/admin/adxPC/4" className="list-group-item list-group-item-action border-0 pl-5" >Medium Rectangle - 300x250px</NavLink>
-                        <NavLink to="/admin/adxPC/5" className="list-group-item list-group-item-action border-0 pl-5" >Half page - 300x600px</NavLink>
-                        <NavLink to="/admin/adxPC/6" className="list-group-item list-group-item-action border-0 pl-5" >Skycrape - 160x600px</NavLink>
-                        <NavLink to="/admin/adxPC/7" className="list-group-item list-group-item-action border-0 pl-5" >Kingsize Article - 660x300px</NavLink> */}
+                        <ItemAdxType adxGroupType={adxGroupType} />
                     </div>
                 </div>
             </div>

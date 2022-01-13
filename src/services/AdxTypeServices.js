@@ -4,16 +4,16 @@ class AdxTypeServices extends BaseServices{
     constructor(){
         super();
     }
-    getAllTypeAdxAction = () =>{
+    getAllTypeAdx = () =>{
         return this.get('/adxType/getAllAdxGroupType');
     }
-    getADXGroupTypeAction = (ADXType) =>{
+    getADXGroupType = (ADXType) =>{
         return this.get(`/adxType/getAdxGroupType/${ADXType}`)
     }
-    upLoadFileAction = (file) =>{
-        return this.post(`/adxType/upload`, file)
+    upLoadAdxType = (file) =>{
+        return this.post(`/adxType/updateAdxType`, file)
     }
-    getAdxTypeAction = (idADX) =>{
+    getAdxType = (idADX) =>{
         return this.get(`/adxType/getAdxType/${idADX}`)
     }
 }

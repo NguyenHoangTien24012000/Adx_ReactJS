@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
 
 export default function AdminPage(props) {
-
+    // console.log(props)
     const dispatch = useDispatch();
 
     const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
@@ -21,7 +21,8 @@ export default function AdminPage(props) {
                 <td>{item.type_adx}</td>
                 <td>{item.number}</td>
                 <td>
-                    <button type="button" className="btn btn-primary"><NavLink to = {`/admin/${item.type_adx}`} className="text-white">Detail</NavLink></button>
+                    <button type="button" className="btn btn-primary mr-1"><NavLink to={`/admin/${item.type_adx}`} className="text-white">Detail</NavLink></button>
+                    <button type="button" className="btn btn-success"><NavLink to={`/admin/addAdx/${item.type_adx}`} className="text-white">Add Item</NavLink></button>
                 </td>
             </tr>
         })
@@ -43,6 +44,7 @@ export default function AdminPage(props) {
                     {renderAdxType()}
                 </tbody>
             </table></div>
+            
         </div>
     )
 }

@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdxTypeAction, upLoadFileImage } from '../redux/actions/AdxTypeAction';
+import { getAdxTypeAction, upLoadAdxTypeAction } from '../redux/actions/AdxTypeAction';
 import * as Yup from "yup";
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import { getAdxDemoAction } from '../redux/actions/AdxDemoAction';
 
 export default function AdminEditAdx(props) {
+
+    
 
     const dispatch = useDispatch();
 
     const { adxType } = useSelector(state => state.AdxTypeReducer)
+
+    const { arrayDemoAdx } = useSelector(state => state.AdxDemoReducer)
+
+    // console.log(demoAdx);
 
     let { idADX } = (props.match.params)
 
@@ -17,7 +25,8 @@ export default function AdminEditAdx(props) {
 
     useEffect(() => {
         dispatch(getAdxTypeAction(idADX))
-    }, [])
+        dispatch(getAdxDemoAction(idADX))
+    }, [idADX])
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -37,25 +46,38 @@ export default function AdminEditAdx(props) {
             name_adx: Yup.string().required("Required!!"),
             name_demo: Yup.string().required("Required!!"),
             posti: Yup.string().required("Required!!"),
-            size : Yup.string().required("Required!!"),
+            size: Yup.string().required("Required!!"),
         }),
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
             let formData = new FormData();
             for (let key in values) {
                 formData.append(key, values[key])
             }
-            dispatch(upLoadFileImage(formData))
+            dispatch(upLoadAdxTypeAction(formData))
         },
     });
 
     const hangdleChangeFile = async (e) => {
-        let image = e.target.files[0]
-       
+
         if (e.target.files && e.target.files[0]) {
+            let image = e.target.files[0]
             await formik.setFieldValue("image", image)
             setFile({ fileRender: URL.createObjectURL(image) });
         }
+    }
+
+    const renderListDemo = () => {
+        return arrayDemoAdx?.map((item, index) => {
+            return <tr key={index} >
+                <th scope="row" >{item.id_demo}</th>
+                <td >{item.name_demo}</td>
+                <td  style={{width :'20%'}}><img src={item.image} style={{width : "30%"}} alt='Adx Demo' /></td>
+                <td className="d-flex align-items-center">
+                    <button type="button" className="btn btn-primary mr-1"><NavLink to={`/admin/editAdxDemo/${item.id_demo}`} className="text-white">Edit</NavLink></button>
+                    <button type="button" className="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        })
     }
 
     return (
@@ -137,11 +159,25 @@ export default function AdminEditAdx(props) {
                             </div>
                         </div>
 
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary mb-5">Update</button>
                     </form>
                 </div>
             </div>
+            <h5>ADX Demo</h5>
 
+            <div><table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID DEMO</th>
+                        <th scope="col">NAME DEMO</th>
+                        <th scope='col'>IMAGE</th>
+                        <th scope="col">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderListDemo()}
+                </tbody>
+            </table></div>
         </div>
     );
 }
