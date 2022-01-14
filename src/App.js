@@ -1,4 +1,4 @@
-import './App.css';
+import './style/App.scss';
 import { BrowserRouter } from "react-router-dom";
 import Login from './pages/Login';
 import { createBrowserHistory } from 'history'
@@ -10,6 +10,8 @@ import AdminAdxType from './pages/AdminAdxType';
 import AdminEditAdx from './pages/AdminEditAdx';
 import AdminEditAdxDemo from './pages/AdminEditAdxDemo';
 import AdminAddAdx from './pages/AdminAddAdx';
+import AdxHomePageTamplate from './templates/AdxHomePageTamplate';
+import ContentAdxHomePage from './components/ContentAdxHomePage';
 
 
 export const history = createBrowserHistory();
@@ -25,7 +27,7 @@ function App() {
                 <AdminTemplate exact path="/admin/edit/:idADX" Component = {AdminEditAdx} />
                 <AdminTemplate exact path="/admin/editAdxDemo/:idADXDemo" Component = {AdminEditAdxDemo} />
                 <AdminTemplate exact path= "/admin/addAdx/:typeAdx" Component={AdminAddAdx} />
-                <Route path="*" component={PageNotFound} />
+                <AdxHomePageTamplate  path="*" Component={ContentAdxHomePage} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,0 +1,21 @@
+.button-link{
+    padding: 6px 16px;
+    background: none;
+    color: white;
+    border-radius: 10px;
+    border :1px solid ;
+    font-size:$fs-0;
+    // border : none;
+    &.sigin{
+        border-color: rgba(241, 241, 241, 0.726);
+        margin-right: 8px;
+        &:hover{
+            background: $color-yellow-0;
+            border-color: $color-yellow-0;
+        }
+    }
+    &.login{
+        border-color: $color-yellow-0;
+        background: $color-yellow-0;
+    }
+}
