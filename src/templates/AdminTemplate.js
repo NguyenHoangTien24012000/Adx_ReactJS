@@ -1,19 +1,27 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { NavLink, Redirect, Route } from 'react-router-dom';
 import TabAdminAdxPC from '../components/TabAdminAdxPC';
+import { checkTokenAction } from '../redux/actions/UserAction';
 
 import { ACCESS_TOKEN } from '../util/config';
 
 export const AdminTemplate = (props) => {
     const { Component, ...resProps } = props;
 
+    const dispatch = useDispatch()
 
     const accessLogin = localStorage.getItem(ACCESS_TOKEN);
     if (!accessLogin) {
         alert("Bạn không có quyền vào trang này!!!");
         return <Redirect to="/login" />
+    }else{
+        console.log("a")
+        dispatch(checkTokenAction())
     }
+
+ 
 
     return (<Route {...resProps} render={(propsRoute) => {
         return <Fragment>
@@ -29,8 +37,7 @@ export const AdminTemplate = (props) => {
                             <TabAdminAdxPC />
                         </div>
                     </div>
-                    <div className="col-md-9 col-lg-10 ml-md-auto px-0">
-                        
+                    <div className="col-md-9 col-lg-10 ml-md-auto px-0">  
                         <Component {...propsRoute} />
                     </div>
                 </div>

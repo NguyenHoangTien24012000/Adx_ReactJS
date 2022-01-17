@@ -1,8 +1,7 @@
-import { userServices } from "../../services/UserServices"
 import { createBrowserHistory } from "history";
+import { userServices } from "../../services/UserServices";
 import { ACCESS_TOKEN } from "../../util/config";
-import { Redirect } from "react-router-dom";
-// const history = createBrowserHistory();
+const history = createBrowserHistory();
 
 export const dangNhapAction = (thongTinNguoiDung, history)=>{
     
@@ -21,3 +20,22 @@ export const dangNhapAction = (thongTinNguoiDung, history)=>{
         }
     }
 }
+
+
+
+export const checkTokenAction = ()=>{
+    
+    return async dispatch =>{
+        try {
+            const result = await userServices.checkToken();
+            console.log(result)
+        } catch (error) {
+            alert("Login again!!")
+            history.push('/login')
+            console.log("ERROR",error);
+        }
+    }
+}
+
+
+
