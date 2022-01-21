@@ -70,15 +70,22 @@
         // transform: translateX(-200px);
     }
     .selection-demo {
-        width: 68%;
+       
         justify-content: center;
         display: flex;
         align-items: center;
         margin: auto;
-        aspect-ratio: 16 / 9;
         background-color: $color-black-2;
         border-radius: $border-radius-2;
         margin-bottom: 22px;
+        &.screenPC {
+            width: 68%;
+            aspect-ratio: 16 / 9;
+        }
+        &.screenMB {
+            width : 30%;
+            aspect-ratio: 1/1.8;
+        }
     }
 
     .selection-demo-text {
@@ -136,11 +143,8 @@
     }
 }
 
-
 @include responsive("screen-3") {
     .content-right {
-     
-
         .brand-top-left {
             h4 {
                 font-size: $fs-0 + 1;
@@ -161,7 +165,7 @@
         }
     }
 }
-@include responsive("screen-2"){
+@include responsive("screen-2") {
     .content-left {
         padding-bottom: 200px;
     }
@@ -176,7 +180,7 @@
         .content-slider {
             width: 320%;
         }
-     
+
         .slider-item {
             &.space-right {
                 margin-right: 54px;
@@ -205,11 +209,10 @@
     }
 }
 @include responsive("extra-large") {
-
     .content-right {
         .content-slider {
             width: 325%;
-        }  
+        }
     }
     .brand-top-left {
         h4 {
@@ -233,9 +236,7 @@
 }
 
 @include responsive("large") {
-
     .content-right {
-
         .content-slider {
             width: 330%;
         }

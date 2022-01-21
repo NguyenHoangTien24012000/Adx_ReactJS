@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
+import { NavLink } from 'react-router-dom';
+import { getADXGroupTypeAction, getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
 import '../style/App.scss'
 export default function HeaderAdxHomePage() {
 
-    const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
-    
-    let ADXPC, ADXMOBILE, ADXSPONSOR, ADXECOM, newAllTypeAdx;
-    
+    const { allTypeAdx,navBarActive } = useSelector(state => state.AdxTypeReducer);
 
-    if(allTypeAdx){
+    let ADXPC, ADXMOBILE, ADXSPONSOR, ADXECOM, newAllTypeAdx;
+
+    if (allTypeAdx) {
         for (let item of allTypeAdx) {
             switch (item.type_adx) {
                 case 'ADX PC':
@@ -30,17 +30,23 @@ export default function HeaderAdxHomePage() {
         }
         newAllTypeAdx = [ADXPC, ADXMOBILE, ADXSPONSOR, ADXECOM]
     }
-    
+    // console.log(newAllTypeAdx)
 
-    // const renderNavbar = newAllTypeAdx.map((item, index) => {
-    //     return 
-    // })
+    const renderNavbar = () => {
+        return newAllTypeAdx?.map((item, index) => {
+            let active = item?.type_adx === navBarActive ? 'active' : ''
+            return <li key={index}>
+                <NavLink className={`${active} navbar-item`} to={`/${item?.type_adx}`}>{item?.type_adx}</NavLink>
+            </li>
+        })
+    }
 
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getAllTypeAdxAction());
+        dispatch(getADXGroupTypeAction('ADX PC'));
     }, [])
 
     return (
@@ -51,13 +57,7 @@ export default function HeaderAdxHomePage() {
                 </div>
                 <div className="navbar">
                     <ul className="navbar-list">
-                        <li><a href="#" className="active navbar-item" id="scrollPC">ADX PC</a> <span className="line-right"></span>
-                        </li>
-                        <li><a href="#" className="navbar-item" id="scrollMobile">ADX MOBILE</a> <span
-                            className="line-right"></span></li>
-                        <li><a href="#" className="navbar-item" id="scrollSpo">ADX SPONSOR</a> <span className="line-right"></span>
-                        </li>
-                        <li><a href="#" className="navbar-item" id="scrollEco">ADX ECOM</a></li>
+                        {renderNavbar()}
                     </ul>
                 </div>
 
@@ -69,15 +69,6 @@ export default function HeaderAdxHomePage() {
                                 d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
                         </svg>
                     </div>
-                    <ul className="navbar-list-mobile">
-                        <li className="navbar-item-mobile active"><a href="#" id="scrollPC_screenSmall">ADX PC</a> <span></span>
-                        </li>
-                        <li className="navbar-item-mobile"><a href="#" id="scrollMobile_screenSmall">ADX MOBILE</a>
-                            <span></span></li>
-                        <li className="navbar-item-mobile"><a href="#" id="scrollSpo_screenSmall">ADX SPONSOR</a> <span></span>
-                        </li>
-                        <li className="navbar-item-mobile"><a href="#" id="scrollEco_screenSmall">ADX ECOM</a></li>
-                    </ul>
                 </div>
                 <div className="search">
                     <div className="group-button">

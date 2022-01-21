@@ -14,6 +14,8 @@
     }
     .button-text {
         padding-right: 6px;
+        color: white;
+        text-decoration: none;
     }
     @include responsive("screen-2") {
         padding: 8px 9px;

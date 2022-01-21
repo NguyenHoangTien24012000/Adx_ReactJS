@@ -5,6 +5,8 @@ const initialState = {
     allTypeAdx: [],
     adxGroupType : [],
     adxType : '',
+    navBarActive: '',
+    adxActive : ''
 }
 
 export default (state = initialState, action) => {
@@ -12,9 +14,9 @@ export default (state = initialState, action) => {
         case GET_ALL_ADX_TYPE:
             return { ...state, allTypeAdx: action.allTypeAdx }
         case SET_ADX_GROUP_TYPE :
-            return {...state, adxGroupType: action.adxGroupType}
+            return {...state, adxGroupType: action.adxGroupType, navBarActive : action.navBarActive, adxActive : action.adxActive}
         case SET_ADX_TYPE :
-            return {...state, adxType : action.adxType}
+            return {...state, adxType : action.adxType, adxActive : action.adxType}
         default:
             return state;
     }

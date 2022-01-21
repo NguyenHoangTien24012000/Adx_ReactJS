@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
+import { checkTokenAction } from '../redux/actions/UserAction';
 
 export default function AdminPage(props) {
     // console.log(props)
@@ -10,6 +11,7 @@ export default function AdminPage(props) {
     const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
 
     useEffect(() => {
+        // dispatch(checkTokenAction(props.history))
         dispatch(getAllTypeAdxAction());
     }, [])
 

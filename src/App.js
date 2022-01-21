@@ -12,6 +12,7 @@ import AdminEditAdxDemo from './pages/AdminEditAdxDemo';
 import AdminAddAdx from './pages/AdminAddAdx';
 import AdxHomePageTamplate from './templates/AdxHomePageTamplate';
 import ContentAdxHomePage from './components/ContentAdxHomePage';
+import ContentAdxHomePageLeft from './components/ContentAdxHomePageLeft';
 
 
 export const history = createBrowserHistory();
@@ -27,6 +28,7 @@ function App() {
                 <AdminTemplate exact path="/admin/edit/:idADX" Component = {AdminEditAdx} />
                 <AdminTemplate exact path="/admin/editAdxDemo/:idADXDemo" Component = {AdminEditAdxDemo} />
                 <AdminTemplate exact path= "/admin/addAdx/:typeAdx" Component={AdminAddAdx} />
+                <AdxHomePageTamplate exact path="/:typeAdx" Component={ContentAdxHomePage} />
                 <AdxHomePageTamplate  path="*" Component={ContentAdxHomePage} />
             </Switch>
         </BrowserRouter>

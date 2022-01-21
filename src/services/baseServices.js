@@ -6,7 +6,7 @@ export class BaseServices {
             url : `${DOMAIN}${url}`,
             method : 'GET',
             data : model,
-            headers : {'Authorization' : localStorage.getItem(ACCESS_TOKEN)}
+            headers : {'Authorization' : sessionStorage.getItem(ACCESS_TOKEN)}
         })
     }
     post = (url, model) =>{
@@ -14,7 +14,7 @@ export class BaseServices {
             url : `${DOMAIN}${url}`,
             method : 'POST',
             data : model,
-            headers : {'Authorization' : localStorage.getItem(ACCESS_TOKEN)}
+            headers : {'Authorization' : sessionStorage.getItem(ACCESS_TOKEN)}
         })
     }
     put = (url, model) =>{
@@ -22,7 +22,7 @@ export class BaseServices {
             url : `${DOMAIN}${url}`,
             method : 'PUT',
             data : model,
-            headers : {'Authorization' : localStorage.getItem(ACCESS_TOKEN)}
+            headers : {'Authorization' : sessionStorage.getItem(ACCESS_TOKEN)}
         })
     }
     delete = (url, model) =>{
@@ -30,7 +30,7 @@ export class BaseServices {
             url : `${DOMAIN}${url}`,
             method : 'DELETE',
             data : model,
-            headers : {'Authorization' : localStorage.getItem(ACCESS_TOKEN)}
+            headers : {'Authorization' : sessionStorage.getItem(ACCESS_TOKEN)}
         })
     }
 }

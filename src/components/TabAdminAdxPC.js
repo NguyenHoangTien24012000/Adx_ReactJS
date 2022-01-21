@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom';
 import { getADXGroupTypeAction } from '../redux/actions/AdxTypeAction';
 import ItemAdxType from './ItemAdxType'
 
-export default function TabAdminAdxPC() {
-
+export default function TabAdminAdxPC(props) {
+    // console.log(props)
     const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
 
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function TabAdminAdxPC() {
                 }} className="list-group-item list-group-item-action bg-dark text-white border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target={`#${nameAdx}`}>
                     <div>
                         <span className="bi bi-cart-dash"></span>
-                        <span className="ml-2">{item.type_adx}</span>
+                        <NavLink className="ml-2" to={`/admin/${item.type_adx}`}>{item.type_adx}</NavLink>
                     </div>
                     <span className="bi bi-chevron-down small"></span>
                 </button>

@@ -16,13 +16,13 @@
         cursor: pointer;
         margin-right: 20px;
         .logo-img {
-            max-width: 76%;
+            width: 62px;
             height: auto;
         }
     }
 
     .navbar {
-        width: 36%;
+        width: 65%;
         .navbar-list {
             list-style: none;
             display: flex;
@@ -49,7 +49,7 @@
     }
     .search {
         display: flex;
-        width: 59%;
+        width: 30%;
         margin: 11px 0;
         align-items: center;
         justify-content: flex-end;
@@ -214,9 +214,7 @@
             display: none;
         }
 
-        .logo {
-            width: 15%;
-        }
+      
         .search {
             justify-content: center;
             width: 70%;

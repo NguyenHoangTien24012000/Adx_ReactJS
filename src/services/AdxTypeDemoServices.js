@@ -8,7 +8,7 @@ class AdxTypeDemoServices extends BaseServices {
         return this.get(`/adxItem/getItemGroup/${idAdx}`)
     }
     upDateDemo(dataDemo){
-        return this.post('/adxItem/updateItemDetail', dataDemo)
+        return this.post('/admin/adxItem/updateItemDetail', dataDemo)
     }
 }
 
