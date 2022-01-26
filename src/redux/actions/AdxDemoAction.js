@@ -24,14 +24,15 @@ export const getDemoAction = (idDemo) => ({
 })
 
 
-export const upDateDemoAction = (data) =>{
+export const upDateDemoAction = (data, idDemo ,history) =>{
     return async (dispatch) =>{
         try {
             const result = await adxTypeDemoServices.upDateDemo(data);
             // console.log(result)
             if(result.status === 200){
                 alert("Update Success!!")
-                dispatch(getAdxDemoAction)
+                dispatch(getAdxDemoAction(idDemo))
+                history.goBack()
             }
         } catch (error) {
             alert("Update Failed!!")

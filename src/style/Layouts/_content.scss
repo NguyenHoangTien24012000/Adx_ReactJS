@@ -5,7 +5,7 @@
 }
 .content-left {
     width: 35%;
-    max-height: 80vh;
+    max-height: 90vh;
     overflow-y: auto;
     scroll-snap-type: y;
     padding-left: 3.5%;
@@ -30,31 +30,34 @@
     }
 }
 .content-right {
-    width: 64%;
-    padding: 25px 3%;
+    width: 65%;
+    // 
     overflow: hidden;
     .content-carousel {
+        padding: 25px 3%;
+        background-image: url('../../assets/images/Bg\ Adx\ pc.jpg')  ;
+        background-position: center center;
         width: 100%;
         position: relative;
-        justify-content: flex-start;
+        // justify-content: flex-start;
         .control-item {
             position: absolute;
             cursor: pointer;
             width: 32px;
             height: 32px;
-            line-height: 37px;
+            line-height: 32px;
             border-radius: 50%;
             background-color: $color-white-0;
             text-align: center;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             z-index: 5;
-            margin-top: 16%;
+            margin-top: 22%;
         }
         .arrow-left {
-            left: 0%;
+            left: 4%;
         }
         .arrow-right {
-            right: 0%;
+            right: 4%;
         }
     }
     .slider-item {
@@ -79,12 +82,12 @@
         border-radius: $border-radius-2;
         margin-bottom: 22px;
         &.screenPC {
-            width: 68%;
-            aspect-ratio: 16 / 9;
+            width: 82%;
+            aspect-ratio: 36 / 23;
         }
         &.screenMB {
-            width : 30%;
-            aspect-ratio: 1/1.8;
+            width : 27%;
+            aspect-ratio: 12/23;
         }
     }
 

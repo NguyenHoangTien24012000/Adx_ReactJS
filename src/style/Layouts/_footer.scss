@@ -17,13 +17,11 @@
         }
     }
     .logo-text {
-        font-family: "Encode Sans", sans-serif;
-        line-height: 10px;
         @include styleText($color-white-0, $fs-0 - 3, $fw-0);
-        margin-top: 13px;
+        margin-top: 14px;
     }
     .logo-bottom {
-        margin-top: 8px;
+        margin-top: 4px;
         display: flex;
         // width: 50%;
         align-items: center;
@@ -68,7 +66,7 @@
         text-align: center;
         width: 21px;
         height: 21px;
-        line-height: 24px;
+        line-height: 20px;
         background-color: $color-blue-1;
         border-radius: 50%;
         &.space-right{
@@ -92,7 +90,8 @@
     }
     .address-detail {
         display: flex;
-        align-items: center;
+        // align-items: center;
+        // display: j;
         img {
             width: 12px;
             margin-right: 6px;
@@ -100,7 +99,7 @@
         p {
             font-family: "Encode Sans", sans-serif;
             @include styleText($color-white-0, $fs-0 - 3, $fw-1);
-            margin-top: 5px;
+            margin-top: 4px;
         }
     }
     

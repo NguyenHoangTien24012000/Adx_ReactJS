@@ -3,7 +3,6 @@
     align-items: center;
     // height: 68px;
     background: $color-gray-0;
-    padding: 2px 0;
     .header-content {
         width: 83%;
         display: flex;
@@ -16,7 +15,7 @@
         cursor: pointer;
         margin-right: 20px;
         .logo-img {
-            width: 62px;
+            width: 55px;
             height: auto;
         }
     }
@@ -59,7 +58,7 @@
         align-items: center;
         width: 30px;
         // height: 30px;
-        margin-top: 8px;
+        margin-top: 2px;
         margin-left: 60px;
         color: $color-white-0;
         display: none;
@@ -74,57 +73,7 @@
         display: none;
         z-index: 5;
     }
-    .navbar_mobile {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 320px;
-        max-width: 100%;
-        background-color: $color-white-0;
-        z-index: 10;
-        transition: all 0.5s;
-        transform: translateX(100%);
-        .navbar-list-mobile {
-            margin-top: 78px;
-            list-style: none;
-            .navbar-item-mobile {
-                a {
-                    font-size: $fs-0;
-                    padding: 14px 20px;
-                    display: block;
-                    text-decoration: none;
-                    color: $color-blue-0;
-                }
-                // background-color: $color-gray-0;
-                margin-bottom: 10px;
-                box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
-                &:hover {
-                    background-color: $color-blue-0;
-                    a {
-                        color: $color-white-0;
-                        font-weight: $fw-3;
-                    }
-                }
-                &.active {
-                    background-color: $color-blue-0;
-                    a {
-                        color: $color-white-0;
-                        font-weight: $fw-3;
-                    }
-                }
-            }
-        }
-        .button-close-sidebar {
-            width: $fs-1 - 2;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            color: $color-blue-0;
-        }
-    }
+
     @include responsive("screen-3") {
         .navbar {
             .navbar-list {
@@ -210,11 +159,6 @@
         }
     }
     @include responsive("medium") {
-        .navbar {
-            display: none;
-        }
-
-      
         .search {
             justify-content: center;
             width: 70%;
@@ -223,8 +167,53 @@
         .sidebar {
             display: block;
         }
-        .navbar_mobile {
-            display: block;
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 320px;
+            max-width: 100%;
+            background-color: $color-white-0;
+            z-index: 10;
+            transition: all 0.5s;
+            transform: translateX(100%);
+            .navbar-list {
+                display: block;
+                margin-top: 78px;
+                list-style: none;
+                width: 100%;
+                .navbar-item {
+                    font-size: $fs-0;
+                    padding: 14px 20px;
+                    display: block;
+                    text-decoration: none;
+                    color: $color-blue-0;
+                    margin-bottom: 10px;
+                    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+                    &:hover {
+                        background-color: $color-blue-0;
+
+                        color: $color-white-0;
+                        font-weight: $fw-3;
+                    }
+                    &.active {
+                        background-color: $color-blue-0;
+
+                        color: $color-white-0;
+                        font-weight: $fw-3;
+                    }
+                }
+            }
+            .button-close-sidebar {
+                display: block;
+                width: $fs-1 - 2;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                cursor: pointer;
+                color: $color-blue-0;
+            }
         }
     }
     @include responsive("small") {

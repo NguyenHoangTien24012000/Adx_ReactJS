@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
-import { getADXGroupTypeAction, getItemTypeAdxAction } from '../redux/actions/AdxTypeAction';
+import { deleteAdxTypeAction, getADXGroupTypeAction, getItemTypeAdxAction } from '../redux/actions/AdxTypeAction';
 
 
 export default function AdminAdxType(props) {
@@ -20,11 +20,29 @@ export default function AdminAdxType(props) {
                 <th scope="row">{item.id_adx}</th>
                 <td>{item.name_adx}</td>
                 <td>{item.size}</td>
-                <td  style={{width :'20%'}}><img src={item.image} style={{width : "30%"}} alt='Adx Demo' /></td>
+                <td style={{ width: '20%' }}><img src={item.image} style={{ width: "30%" }} alt='Adx Demo' /></td>
                 <td>{item.type_screen}</td>
                 <td>
                     <button type="button" className="btn btn-primary mr-1"><NavLink to={`/admin/edit/${item.id_adx}`} className="text-white">Edit</NavLink></button>
-                    <button type="button" className="btn btn-danger">Delete</button>
+                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target={`#model${item.id_adx}`}>Delete</button>
+                    <div className="modal fade" id={`model${item.id_adx}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLongTitle">Do you want to delete?</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() =>{
+                                        dispatch(deleteAdxTypeAction(item.id_adx, ADXType))
+                                    }} >Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         })

@@ -16,6 +16,12 @@ class AdxTypeServices extends BaseServices{
     getAdxType = (idADX) =>{
         return this.get(`/adxType/getAdxType/${idADX}`)
     }
+    addAdxType = (file) =>{
+        return this.post(`/admin/adxType/addNewAdxType`, file)
+    }
+    deleteAdxType = (idAdx) =>{
+        return this.post(`/admin/adxType/deleteAdxType/${idAdx}`)
+    }
 }
 
 export const adxTypeServices = new AdxTypeServices()

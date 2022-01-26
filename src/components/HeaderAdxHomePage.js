@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getADXGroupTypeAction, getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
 import '../style/App.scss'
 export default function HeaderAdxHomePage() {
 
-    const { allTypeAdx,navBarActive } = useSelector(state => state.AdxTypeReducer);
+    const { allTypeAdx, navBarActive } = useSelector(state => state.AdxTypeReducer);
 
     let ADXPC, ADXMOBILE, ADXSPONSOR, ADXECOM, newAllTypeAdx;
 
@@ -32,21 +32,39 @@ export default function HeaderAdxHomePage() {
     }
     // console.log(newAllTypeAdx)
 
+    const siderBar = useRef(null)
+    const navbar = useRef(null)
+    const navOverlay = useRef(null)
+    const buttonClose = useRef(null)
+    function openSideBar() {
+        navbar.current.style.transform = `translateX(0px)`;
+        navOverlay.current.style.display = 'block';
+    }
+    function overLayHidden() {
+        navbar.current.style.transform = `translateX(100%)`;
+        navOverlay.current.style.display = 'none';
+    }
+    const siderBarOverlay = () => {
+        siderBar.current.addEventListener('click', openSideBar);
+        navOverlay.current.addEventListener('click', overLayHidden)
+        buttonClose.current.addEventListener('click', overLayHidden)
+    }
+
     const renderNavbar = () => {
         return newAllTypeAdx?.map((item, index) => {
             let active = item?.type_adx === navBarActive ? 'active' : ''
             return <li key={index}>
-                <NavLink className={`${active} navbar-item`} to={`/${item?.type_adx}`}>{item?.type_adx}</NavLink>
+                <NavLink  className={`${active} navbar-item`} to={`/${item?.type_adx}`}>{item?.type_adx}</NavLink>
             </li>
         })
     }
-
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getAllTypeAdxAction());
         dispatch(getADXGroupTypeAction('ADX PC'));
+        siderBarOverlay()
     }, [])
 
     return (
@@ -55,14 +73,11 @@ export default function HeaderAdxHomePage() {
                 <div className="logo">
                     <img className="logo-img" src={require('../assets/images/Group 3.png')} alt="adx" />
                 </div>
-                <div className="navbar">
+                <div className="navbar" ref={navbar}>
                     <ul className="navbar-list">
                         {renderNavbar()}
                     </ul>
-                </div>
-
-                <div className="navbar_mobile">
-                    <div className="button-close-sidebar">
+                    <div className="button-close-sidebar" ref={buttonClose}>
                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas"
                             data-icon="times" className="svg-inline--fa fa-times fa-w-11" role="img" viewBox="0 0 352 512">
                             <path fill="currentColor"
@@ -72,11 +87,11 @@ export default function HeaderAdxHomePage() {
                 </div>
                 <div className="search">
                     <div className="group-button">
-                        <button className="button-link sigin">Đăng kí</button>
-                        <button className="button-link login">Đăng nhập</button>
+                        <button className="button-link sigin"><a className='text-button' href=''>Đăng kí</a></button>
+                        <button className="button-link login"><a  className='text-button' href=''>Đăng nhập</a></button>
                     </div>
                 </div>
-                <div className="sidebar" id="sidebarScreenSmall">
+                <div className="sidebar" ref={siderBar} >
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
                         className="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512">
@@ -85,7 +100,9 @@ export default function HeaderAdxHomePage() {
                         </path>
                     </svg>
                 </div>
-                <div className="nav__overlay"></div>
+                <div className="nav__overlay" ref={navOverlay}>
+
+                </div>
             </div>
         </header>
 

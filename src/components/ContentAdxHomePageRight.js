@@ -8,12 +8,12 @@ export default function ContentAdxHomePageRight(props) {
     const domSlider = useRef(null)
     const { arrayDemoAdx } = useSelector(state => state.AdxDemoReducer)
     const { adxActive } = useSelector(state => state.AdxTypeReducer)
-    console.log(adxActive.type_screen)
+    // console.log(adxActive.type_screen)
     function carousel() {
+        let current = 0;
         //so luong the con
         const countItem = domCarousel.current.querySelectorAll('.slider-item').length;
 
-        let current = 0;
 
 
         domPrev.current.style.opacity = 0.5;
@@ -23,6 +23,7 @@ export default function ContentAdxHomePageRight(props) {
             domPrev.current.style.opacity = 1;
             if (current < countItem - 1) {
                 current += 1;
+                domNext.current.style.opacity = 1;
             }
             if (current === countItem - 1) {
 
@@ -51,6 +52,8 @@ export default function ContentAdxHomePageRight(props) {
         carousel();
         return () => {
             domSlider.current.style.transform = 'translateX(0)';
+            domPrev.current.style.opacity = 0.5;
+            domNext.current.style.opacity = 1;
         }
     }, [arrayDemoAdx]);
 
@@ -61,7 +64,7 @@ export default function ContentAdxHomePageRight(props) {
             return <div className="slider-item space-right" key={index}>
                 <div className={`selection-demo ${typeScreen}`}>
 
-                    <img src={item.image} alt={item.name_demo} />
+                    <img className='img-carousel' style={{width :'100%', height: '100%',objectFit: 'cover'}} src={item.image} alt={item.name_demo} />
 
                 </div>
                 <div className="content-brand">

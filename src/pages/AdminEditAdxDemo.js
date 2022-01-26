@@ -39,7 +39,7 @@ export default function AdminEditAdxDemo(props) {
             for (let key in values) {
                 formData.append(key, values[key])
             }
-            dispatch(upDateDemoAction(formData))
+            dispatch(upDateDemoAction(formData, idADXDemo ,props.history))
         },
     });
 

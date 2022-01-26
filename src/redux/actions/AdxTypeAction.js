@@ -40,13 +40,14 @@ export const getADXGroupTypeAction = (ADXType) => {
 }
 
 
-export const upLoadAdxTypeAction = (file) =>{
+export const upLoadAdxTypeAction = (file, history, adxType) =>{
     return async(dispatch) =>{
         try {
             const result = await adxTypeServices.upLoadAdxType(file);
             console.log(result)
             if(result.status === 200) {
                 alert("Update Success!!")
+                history.push(`/admin/${adxType}`)
             }
         } catch (error) {
             alert("Update Failed!!")
@@ -70,6 +71,39 @@ export const getAdxTypeAction = (idADX) =>{
             }
         } catch (error) {
            
+            console.log(error)
+        }
+    }
+}
+
+
+export const addAdxTypeAction = (file, adxType, history) =>{
+    return async (dispatch) =>{
+        try {
+            const result = await adxTypeServices.addAdxType(file)
+            if(result.status === 200){
+                dispatch(getADXGroupTypeAction(adxType))
+                alert("Success!!")
+                history.push(`/admin/${adxType}`)
+            }
+        } catch (error) {
+            alert("Failed!!")
+            console.log(error)
+        }
+    }
+}
+
+
+export const deleteAdxTypeAction =(idAdx, adxType) =>{
+    return async(dispatch) =>{
+        try {
+            const result = await adxTypeServices.deleteAdxType(idAdx)
+            if(result.status === 200){
+                dispatch(getADXGroupTypeAction(adxType))
+                alert("Success!!")
+            }
+        } catch (error) {
+            alert("Failed!!")
             console.log(error)
         }
     }

@@ -9,7 +9,7 @@ export default function AdminPage(props) {
     const dispatch = useDispatch();
 
     const { allTypeAdx } = useSelector(state => state.AdxTypeReducer);
-
+    
     useEffect(() => {
         // dispatch(checkTokenAction(props.history))
         dispatch(getAllTypeAdxAction());
