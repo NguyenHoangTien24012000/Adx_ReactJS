@@ -38,6 +38,13 @@ export default function TabAdminAdxPC(props) {
     return (
         <div>
             {renderAdxType()}
+            <button className="list-group-item list-group-item-action bg-dark text-white border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" >
+                    <div>
+                        <span className="bi bi-cart-dash"></span>
+                        <NavLink className="ml-2" to={`/admin/adxContact`}>ADX CONTACT</NavLink>
+                    </div>
+                    <span className="bi bi-chevron-down small"></span>
+                </button>
         </div>
     )
 }

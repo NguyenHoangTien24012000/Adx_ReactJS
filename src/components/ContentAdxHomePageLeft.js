@@ -5,7 +5,7 @@ import { getADXGroupTypeAction, getAdxTypeAction } from '../redux/actions/AdxTyp
 
 export default function ContentAdxHomePageLeft(props) {
     const { adxGroupType,adxActive } = useSelector(state => state.AdxTypeReducer)
-    console.log(adxGroupType)
+    // console.log(adxGroupType)
     const dispatch = useDispatch()
     useEffect(() => {
         if (props.adxType) {

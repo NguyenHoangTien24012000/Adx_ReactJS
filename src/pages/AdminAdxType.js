@@ -9,6 +9,8 @@ export default function AdminAdxType(props) {
     const { adxGroupType } = useSelector(state => state.AdxTypeReducer)
 
     const { ADXType } = props.match.params;
+    
+    
 
     useEffect(() => {
         dispatch(getADXGroupTypeAction(ADXType));

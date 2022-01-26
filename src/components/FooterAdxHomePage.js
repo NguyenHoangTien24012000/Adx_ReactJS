@@ -1,6 +1,10 @@
 import React from 'react'
 
-export default function FooterAdxHomePage() {
+export default function FooterAdxHomePage(props) {
+
+    const {adxContact} = props;
+    console.log('a', adxContact)
+
     return (
         <footer className="footer">
             <div className="footer-content">
@@ -23,18 +27,18 @@ export default function FooterAdxHomePage() {
                 <div className="footer-contact">
                     <h3>Liên hệ</h3>
                     <div className="detail-contact"><img src={require('../assets/images/Vector (2).png')} alt="phone" />
-                        <p>Số máy lẻ: (84 4) 7307 7979 (Ext: 62860)</p>
+                        <p>Số máy lẻ: {adxContact?.number_phone1}</p>
                     </div>
                     <div className="detail-contact"><img src={require('../assets/images/Union.png')} alt="union" />
-                        <p>Hotline: 096 313 44 98</p>
+                        <p>Hotline: {adxContact?.number_phone2}</p>
                     </div>
                     <div className="detail-contact"><img src={require('../assets/images/Group 4.png')} alt="email" />
-                        <p>Email: adx_support@admicro.vn</p>
+                        <p>Email: {adxContact?.email}</p>
                     </div>
                     <div className="social-media">
-                        <div className="logo-contact space-right"><a href='' target="_blank"><img src={require('../assets/images/Vector.png')} alt="facebook" /></a></div>
-                        <div className="logo-contact space-right"><a href='' target="_blank"><img src={require('../assets/images/Vector (1).png')} alt="skype" /></a></div>
-                        <div className="logo-contact logo-zalo space-right"><a href='' target="_blank"><img src={require('../assets/images/image 152.png')} alt="zalo" /></a></div>
+                        <div className="logo-contact space-right"><a href={adxContact?.link_facebook} target="_blank"><img src={require('../assets/images/Vector.png')} alt="facebook" /></a></div>
+                        <div className="logo-contact space-right"><a href={adxContact?.link_skype} target="_blank"><img src={require('../assets/images/Vector (1).png')} alt="skype" /></a></div>
+                        <div className="logo-contact logo-zalo space-right"><a href={adxContact?.link_zalo} target="_blank"><img src={require('../assets/images/image 152.png')} alt="zalo" /></a></div>
                     </div>
                 </div>
                 <div className="footer-address">

@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getADXGroupTypeAction, getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
 import '../style/App.scss'
-export default function HeaderAdxHomePage() {
+export default function HeaderAdxHomePage(props) {
+
+    const {adxContact} = props;
 
     const { allTypeAdx, navBarActive } = useSelector(state => state.AdxTypeReducer);
 
@@ -87,8 +89,8 @@ export default function HeaderAdxHomePage() {
                 </div>
                 <div className="search">
                     <div className="group-button">
-                        <button className="button-link sigin"><a className='text-button' href=''>Đăng kí</a></button>
-                        <button className="button-link login"><a  className='text-button' href=''>Đăng nhập</a></button>
+                        <button className="button-link sigin"><a className='text-button' href={adxContact.link_signup}>Đăng kí</a></button>
+                        <button className="button-link login"><a  className='text-button' href={adxContact.link_signin}>Đăng nhập</a></button>
                     </div>
                 </div>
                 <div className="sidebar" ref={siderBar} >
