@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef , useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getADXGroupTypeAction, getAllTypeAdxAction } from '../redux/actions/AdxTypeAction';
@@ -6,6 +6,8 @@ import '../style/App.scss'
 export default function HeaderAdxHomePage(props) {
 
     const {adxContact} = props;
+
+    const [size, setSize] = useState(window.innerWidth)
 
     const { allTypeAdx, navBarActive } = useSelector(state => state.AdxTypeReducer);
 
@@ -63,10 +65,18 @@ export default function HeaderAdxHomePage(props) {
 
     const dispatch = useDispatch()
 
+    const checkSize = () =>{
+        setSize(window.innerWidth)
+        if(size > 768){
+            navbar.current.style.transform = `translateX(0px)`;
+        }
+    }
+
     useEffect(() => {
         dispatch(getAllTypeAdxAction());
         dispatch(getADXGroupTypeAction('ADX PC'));
         siderBarOverlay()
+        window.addEventListener('resize', checkSize)
     }, [])
 
     return (
